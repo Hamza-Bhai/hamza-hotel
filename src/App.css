@@ -167,7 +167,7 @@ h6 {
 
 .defaultHero {
   min-height: calc(100vh - 66px);
-  background-image: url("./images/defaultBcg.jpg");
+  background-image: url("./images/defaultBcg.jpg") center/cover no-repeat;
   display: flex;
   align-items: center;
   justify-content: center;
