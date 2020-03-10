@@ -1,6 +1,6 @@
 import React from "react";
 import Room from "./Room";
-export default function RoomsList({ rooms }) {
+const RoomsList = ({ rooms }) => {
   if (rooms.length === 0) {
     return (
       <div className="empty-search">
@@ -17,4 +17,5 @@ export default function RoomsList({ rooms }) {
       </div>
     </section>
   );
-}
+};
+export default RoomsList;

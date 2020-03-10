@@ -9,7 +9,7 @@ export default class SingleRoom extends Component {
     super(props);
     this.state = {
       slug: this.props.match.params.slug,
-      defaultBcg
+      defaultBcg: defaultBcg
     };
   }
   // componentDidMount() {}
@@ -73,14 +73,12 @@ export default class SingleRoom extends Component {
           </div>
         </section>
         <section className="room-extras">
-          <h6>
-            extras
-          </h6>
+          <h6>extras</h6>
           <ul className="extras">
             {extras.map((item, index) => {
               return (
                 <li key={index} className="">
-                  -{item}
+                  - {item}
                 </li>
               );
             })}

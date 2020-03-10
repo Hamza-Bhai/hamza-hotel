@@ -2,8 +2,8 @@ import React from "react";
 import RoomsFilter from "./RoomsFilter";
 import RoomsList from "./RoomsList";
 import Loading from "./Loading";
-import {withRoomConsumer} from '../Context'
-function RoomsContainer({ context }) {
+import { withRoomConsumer } from "../Context";
+function RoomContainer({ context }) {
   const { loading, sortedRooms, rooms } = context;
   if (loading) {
     return <Loading />;
@@ -15,4 +15,4 @@ function RoomsContainer({ context }) {
     </>
   );
 }
-export default withRoomConsumer(RoomsContainer);
+export default withRoomConsumer(RoomContainer);

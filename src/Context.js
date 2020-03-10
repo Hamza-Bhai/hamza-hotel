@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 // import items from "./Data.js";
 import Client from "./contentful";
+
 const RoomContext = React.createContext();
 
 export default class RoomProvider extends Component {
@@ -25,7 +26,7 @@ export default class RoomProvider extends Component {
     try {
       let response = await Client.getEntries({
         content_type: "hhamzaHotelRoom",
-        order:"sys.createdAt"
+        order: "sys.createdAt"
       });
       let rooms = this.formatData(response.items);
       let featuredRooms = rooms.filter(room => room.featured === true);
@@ -91,34 +92,37 @@ export default class RoomProvider extends Component {
     capacity = parseInt(capacity);
     price = parseInt(price);
     // filter by type
-    if (type !== "all" || type === "all") {
-      type === "all"
-        ? (tempRooms = tempRooms.filter(room => room.types === types))
-        : (tempRooms = tempRooms.filter(room => room.type === type));
-
-      // filter by capacity
-      if (capacity !== 1) {
-        tempRooms = tempRooms.filter(room => room.capacity >= capacity);
-      }
-      // filter bt price
-      tempRooms = tempRooms.filter(room => room.price <= price);
-      // filter by size
-      tempRooms = tempRooms.filter(
-        room => room.size >= minSize && room.size <= maxSize
-      );
-      // filter by breakfast
-      if (breakfast) {
-        tempRooms = tempRooms.filter(room => room.breakfast === true);
-      }
-      // filter by pets
-      if (pets) {
-        tempRooms = tempRooms.filter(room => room.pets === true);
-      }
-      // change state
-      this.setState({
-        sortedRooms: tempRooms
-      });
+    if (type !== "all") {
+      tempRooms = tempRooms.filter(room => room.type === type);
     }
+    // if (type !== "all" || type === "all") {
+    //   type === "all"
+    //     ? (tempRooms = tempRooms.filter(room => room.types === types))
+    //     : (tempRooms = tempRooms.filter(room => room.type === type));
+    // }
+
+    // filter by capacity
+    if (capacity !== 1) {
+      tempRooms = tempRooms.filter(room => room.capacity >= capacity);
+    }
+    // filter bt price
+    tempRooms = tempRooms.filter(room => room.price <= price);
+    // filter by size
+    tempRooms = tempRooms.filter(
+      room => room.size >= minSize && room.size <= maxSize
+    );
+    // filter by breakfast
+    if (breakfast) {
+      tempRooms = tempRooms.filter(room => room.breakfast === true);
+    }
+    // filter by pets
+    if (pets) {
+      tempRooms = tempRooms.filter(room => room.pets === true);
+    }
+    // change state
+    this.setState({
+      sortedRooms: tempRooms
+    });
   };
   render() {
     return (
@@ -134,6 +138,7 @@ export default class RoomProvider extends Component {
     );
   }
 }
+const RoomConsumer = RoomContext.Consumer;
 
 export function withRoomConsumer(Component) {
   return function ConsumerWrapper(props) {
@@ -146,5 +151,5 @@ export function withRoomConsumer(Component) {
     );
   };
 }
-const RoomConsumer = RoomContext.Consumer;
+
 export { RoomProvider, RoomConsumer, RoomContext };

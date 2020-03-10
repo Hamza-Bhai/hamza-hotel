@@ -1,12 +1,12 @@
 import React from "react";
 import { useContext } from "react";
 import { RoomContext } from "../Context";
-import Title from "../components/Title";
+import Title from "./Title";
 // get all uniwue value;
 const getUnique = (items, value) => {
   return [...new Set(items.map(item => item[value]))];
 };
-export default function RoomsFilter({ rooms }) {
+const RoomsFilter = ({ rooms }) => {
   const context = useContext(RoomContext);
   const {
     handleChange,
@@ -32,6 +32,7 @@ export default function RoomsFilter({ rooms }) {
       </option>
     );
   });
+  // get unique capacity
   let people = getUnique(rooms, "capacity");
   people = people.map((item, index) => {
     return (
@@ -42,7 +43,7 @@ export default function RoomsFilter({ rooms }) {
   });
   return (
     <section className="filter-container">
-      <Title title="search-rooms" />
+      <Title title="search rooms" />
       <form className="filter-form">
         {/* select type */}
         <div className="form-group">
@@ -135,4 +136,5 @@ export default function RoomsFilter({ rooms }) {
       </form>
     </section>
   );
-}
+};
+export default  RoomsFilter;
