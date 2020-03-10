@@ -11,7 +11,6 @@ export default class RoomProvider extends Component {
     featuredRooms: [],
     loading: true,
     type: "all",
-    types: "all",
     capacity: 1,
     price: 0,
     minPrice: 0,
@@ -47,6 +46,19 @@ export default class RoomProvider extends Component {
   };
   componentDidMount() {
     this.getData();
+    // let rooms = this.formatData(items);
+    // let featuredRooms = rooms.filter(room => room.featured === true);
+    // let maxPrice = Math.max(...rooms.map(item => item.price));
+    // let maxSize = Math.max(...rooms.map(item => item.size));
+    // this.setState({
+    //   rooms,
+    //   featuredRooms,
+    //   sortedRooms: rooms,
+    //   loading: false,
+    //   price: maxPrice,
+    //   maxPrice,
+    //   maxSize
+    // });
   }
 
   formatData(items) {
@@ -78,7 +90,6 @@ export default class RoomProvider extends Component {
     let {
       rooms,
       type,
-      types,
       capacity,
       price,
       minSize,
